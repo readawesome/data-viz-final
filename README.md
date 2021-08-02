@@ -1,6 +1,6 @@
 # Welcome! Learn more about the history of the Grammy Awards here!
 
-Click [here](start.html) to begin!
+Click [here](index.html) to begin!
 
 Here are the sources used to create this narrative visualization:
 
