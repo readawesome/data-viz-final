@@ -2,3 +2,7 @@
 
 Click [here](start.html) to begin!
 
+Here are the sources used to create this narrative visualization:
+
+1) [Kaggle Grammy Awards Dataset] (https://www.kaggle.com/unanimad/grammy-awards)
+
