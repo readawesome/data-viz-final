@@ -50,6 +50,17 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="materialize.js"></script>
   <script src="init.js"></script>
-
+  <svg viewBox="0 0 400 500"></svg>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   </body>
 </html>
+
+<script>
+ var svg = d3.select('svg')
+
+var myimage = svg.append('image')
+    .attr('xlink:href', 'https://cdn.shopify.com/s/files/1/2343/6313/products/grammy-award-trophy-1_1200x1200.jpg?v=1571718522')
+    .attr('width', 800)
+    .attr('height', 800)
+   myimage.attr('x', 50);
+</script>
