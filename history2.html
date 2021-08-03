@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Political Tweets Classifier</title>
+  <title>Grammy Awards</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,30 +12,25 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Grammy Award History</a>
-     
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Grammy Awards</a>
+    
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Welcome to <br>Grammy Awards History</h1>
+      <h1 class="header center orange-text">Learn more about the history of the Grammy Awards!</h1>
       <div class="row center">
-        <h5 class="header col s12 light">
-          <br>
-          history infooooooooooooo
-          .</h5>
+        <h5 class="header col s12 light">Click on the button to begin learning!</h5>
       </div>
       <div class="row center">
-        <a href="history3.html" id="download-button" class="btn-large waves-effect waves-light orange">Learn More!</a>
+        <a href="history1.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
       </div>
       <br><br>
 
     </div>
   </div>
-
-
 
     </div>
   </footer>
@@ -43,8 +38,21 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
+  <script src="materialize.js"></script>
+  <script src="init.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <svg viewBox="0 0 400 500">
+</svg>
+  
   </body>
 </html>
+
+<script>
+ var svg = d3.select('svg')
+
+var myimage = svg.append('image')
+    .attr('xlink:href', 'https://www.wfmt.com/wp-content/uploads/2018/01/grammy_award_lg-e1517158076197.jpg')
+    .attr('width', 200)
+    .attr('height', 200)
+   myimage.attr('x', 50);
+</script>
