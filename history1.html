@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Political Tweets Classifier</title>
+  <title>Grammy Awards</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,30 +12,25 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Grammy Award History</a>
-     
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">WCS Code Ada 2020</a>
+    
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Welcome to <br>Grammy Awards History</h1>
+      <h1 class="header center orange-text">Background</h1>
       <div class="row center">
-        <h5 class="header col s12 light">
-          <br>
-          history infooooooooooooo
-          .</h5>
+        <h5 class="header col s12 light">The Grammys had their origin in the Hollywood Walk of Fame project in the 1950s. As recording executives on the Walk of Fame committee compiled a list of significant recording industry people who might qualify for a Walk of Fame star, they realized that many leading people in their business would not earn a star on Hollywood Boulevard. They determined to rectify this by creating awards given by their industry similar to the Oscars and the Emmys. After deciding to go forward with such awards, a question remained what to call them. One working title was the ‘Eddie’, to honor Thomas Edison, the inventor of the phonograph. Eventually, the name was chosen after a mail-in contest whereby approximately 300 contestants submitted the name 'Grammy', with the earliest postmark from contest winner Jay Danna of New Orleans, Louisiana, as an abbreviated reference to the gramophone. Grammys were first awarded for achievements in 1958.</h5>
       </div>
       <div class="row center">
-        <a href="history2.html" id="download-button" class="btn-large waves-effect waves-light orange">Next</a>
+        <a href="history1.html" id="download-button" class="btn-large waves-effect waves-light orange">Learn More!</a>
       </div>
       <br><br>
 
     </div>
   </div>
-
-
 
     </div>
   </footer>
@@ -43,8 +38,82 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="materialize.js"></script>
+  <script src="init.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <meta charset="utf-8">
 
+
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Load d3-cloud -->
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+  
   </body>
 </html>
+
+  <script>
+
+
+// List of words
+var myWords = [{word: "Percy Faith", size: "2"}, {word: "Bob Newhart", size: "2"}, {word: "Ella Fitzgerald", size: "4"}, {word: "Count Basie", size: "2"}, {word: "Henry Mancini", size: "3"}, {word: "Norman Luboff Choir", size: "1"}
+              , {word: "Andre Previn", size: "2"}, {word: "Frank Sinatra", size: "3"}, {word: "Jonathan & Darlene Edwards ", size: "1"}
+              , {word: "Jonathan & Darlene Edwards", size: "1"}, {word: "Franklin Delano Roosevelt", size: "1"}, {word: "Marty Robbins", size: "1"},
+              {word: "Harry Belafonte", size: "1"}, {word: "Marty Robbins", size: "1"}, {word: "David Seville And The Chipmunks", size: "3"}, 
+              {word: "Eydie Gorme & Steve Lawrence", size: "1"}, {word: "Bobby Darin", size: "1"}, {word: "Duke Ellington", size: "1"},
+              {word: "David Rose", size: "1"}, {word: "Mormon Tabernacle Choir", size: "1"}, {word: "Jonah Jones", size: "1"}, {word: "Shelley Berman", size: "1"},
+              {word: "Shelley Berman", size: "1"}, {word: "Homer And Jethro", size: "1"}, {word: "Carl Sandburg", size: "1"}, {word: "Nat Cole", size: "1"},
+              {word: "Johnny Horton", size: "1"}, {word: "Dinah Washington", size: "1"}, {word: "The Kingston Trio", size: "1"}, {word: "Peter Ustinov", size: "1"},
+              {word: "Domenico Modugno", size: "1"}, {word: "Perry Como", size: "1"}, {word: "Billy May", size: "1"}, {word: "Keely Smith and Louis Prima", size: "1"},
+              {word: "The Kingston Trio", size: "1"}, {word: "The Champs", size: "1"}, {word: "Stan Freberg", size: "1"}]
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+// Wordcloud features that are different from one word to the other must be here
+var layout = d3.layout.cloud()
+  .size([width, height])
+  .words(myWords.map(function(d) { return {text: d.word, size:d.size}; }))
+  .padding(5)        //space between words
+  .rotate(function() { return ~~(Math.random() * 2) * 90; })
+  .fontSize(function(d) { return d.size; })      // font size of words
+  .on("end", draw);
+layout.start();
+
+// This function takes the output of 'layout' above and draw the words
+// Wordcloud features that are THE SAME from one word to the other can be here
+function draw(words) {
+  svg
+    .append("g")
+      .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size; })
+        .style("fill", "#69b3a2")
+        .attr("text-anchor", "middle")
+        .style("font-family", "Impact")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+}
+
+</script>
