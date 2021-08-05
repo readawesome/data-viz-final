@@ -61,7 +61,7 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("the_grammy_awards.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv", function(data) {
 
 // X axis
 var x = d3.scaleBand()
@@ -87,7 +87,7 @@ svg.selectAll("mybar")
   .data(data)
   .enter()
   .append("rect")
-    .attr("x", function(d) { return x(d.year); })
+    .attr("x", function(d) { return x(d.Country); })
     .attr("y", function(d) { return y(d.Value); })
     .attr("width", x.bandwidth())
     .attr("height", function(d) { return height - y(d.Value); })
